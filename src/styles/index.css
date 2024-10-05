@@ -1,0 +1,50 @@
+:root {
+  --bg-color: #1f2128;
+  --text-color: #ffffff;
+  --icone-color: #ffffff;
+  --purple-color: #6c5dd3;
+  --orenge-color: #ff754c;
+  --light-orenge-color: #ff754c2b;
+  --footer-color: #2a2c35;
+  --blue-color: #0049c6;
+  --green-color: #7fba7a;
+  --gray-color: #808191;
+  --gray2-color: #E4E4E41A;
+  --gray3-color: #E4E4E440;
+  --box-color:#242731;
+}
+/* [data-theme="light"] {
+ 
+} */
+* {
+  padding: 0;
+  outline: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: Vazirmatn;
+  background: linear-gradient(
+      90deg,
+      rgba(0, 0, 0, 1) 5%,
+      
+      rgba(31, 33, 40, 0.822) 100%
+    ),
+    url("./../assets/bg.jpg");
+  background-color: var(--bg-color);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 7500px;
+}
+a {
+  text-decoration: none;
+}
+li {
+  list-style: none;
+}
+
+input,
+button,
+label {
+  font-family: inherit;
+}
