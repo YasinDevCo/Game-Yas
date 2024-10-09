@@ -187,6 +187,7 @@ footer .bottom .div div {
   }
 footer{
   background-color: transparent;
+  height: auto;
 }
   .bottom .div p {
     text-align: center;
