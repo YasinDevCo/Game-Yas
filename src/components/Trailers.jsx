@@ -7,19 +7,18 @@ import { MdAddCircleOutline, MdMoreHoriz } from "react-icons/md";
 import { AiOutlineLike } from "react-icons/ai";
 import { RiShareForwardLine } from "react-icons/ri";
 import { useQuery } from "@apollo/client";
-import { DefaultPlayer as Video } from "react-html5video";
+import { PlayPause, DefaultPlayer as Video } from "react-html5video";
 import "react-html5video/dist/styles.css";
+import { FaPlay } from "react-icons/fa";
+import { Link } from "react-router-dom";
 function Trailers() {
   const { data, loading } = useQuery(QUERY_GET_TRAILERS);
   const [currentVideo, setCurrentVideo] = useState(null);
   const [visibleCount, setVisibleCount] = useState(4); // تعداد تریلرهای نمایش داده شده
   const [showAll, setShowAll] = useState(false); // وضعیت نمایش بیشتر/کمتر
   const [model, setModel] = useState(false);
-
-  useEffect(() => {
-
-    
-  }, []);
+  const [show, setShow] = useState(false);
+  useEffect(() => {}, []);
   // تنظیم ویدیو پیش‌فرض به اولین ویدیو
   if (data && !currentVideo) {
     setCurrentVideo(data.trailerTables[0]);
@@ -29,20 +28,33 @@ function Trailers() {
     setShowAll(!showAll); // تغییر وضعیت نمایش بیشتر/کمتر
     setVisibleCount(showAll ? 4 : data.trailerTables.length); // تعداد تریلرها را تنظیم کنید
   };
-
+  const showMovie = () => {
+    // setShow(true);
+  };
   if (!loading) {
     return (
       <div className={style.container}>
         <div className={style.video}>
-          <Video
+          {show && (
+            <div className={style.videoShow}>
+              <Video
+                
+                controls={["PlayPause", "Seek", "Time", "Volume", "Fullscreen"]}
+                poster={currentVideo?.image.url}
+                // autoPlay
+              >
+                <source src={currentVideo?.trailers.url} type="video/mp4" />
+              </Video>
+            </div>
+          )}
+          <img
             className={style.videoItem}
-            controls={["PlayPause", "Seek", "Time", "Volume", "Fullscreen"]}
-            poster={currentVideo?.image.url}
-            // autoPlay
-          >
-            <source src={currentVideo?.trailers.url} type="video/mp4" />
-          </Video>
-
+            src={currentVideo?.image.url}
+            alt=""
+          />
+          <Link className={style.play} to="/" onClick={showMovie}>
+            <FaPlay color="var(--text-color)" size={32} />
+          </Link>
           <div className={style.text}>
             <p>{currentVideo?.title}</p>
             <p>{currentVideo?.short_description}</p>

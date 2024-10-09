@@ -107,6 +107,6 @@ p {
   }
   .item .content {
     width: 100%;
-    height: calc(300px / 2.6);
+    height: calc(300px / 1.6);
   }
 }
